@@ -43,11 +43,11 @@ class MainActivity : AppCompatActivity() {
 
         if(chkbxRating.isChecked)
         {
-            ageRating = "Yes"
+            ageRating = "No"
         }
         else
         {
-            ageRating = "No"
+            ageRating = "Yes"
         }
 
 
@@ -89,27 +89,29 @@ class MainActivity : AppCompatActivity() {
                 "Title = " + movie_name.text + "\nDescription = " + movie_desc.text + "\nRelease Date = " + movie_date.text + "\nLanguage = " + language + "\nSuitable for all ages = " + chkbxRating.isChecked + "\nReason: \n" + all_reason,
                 Toast.LENGTH_LONG
             ).show()
+
+            val name = findViewById<EditText>(R.id.movie_name)
+            val nameStr = name.text.toString()
+            val overview = findViewById<EditText>(R.id.movie_desc)
+            val overviewStr = overview.text.toString()
+            val langStr = language
+            val date = findViewById<EditText>(R.id.movie_date)
+            val dateStr = date.text.toString()
+            val ageStr = ageRating
+
+
+            val intent = Intent(this@MainActivity, movie_details::class.java)
+
+            intent.putExtra("nameStr", nameStr)
+            intent.putExtra("overviewStr", overviewStr)
+            intent.putExtra("langStr", langStr)
+            intent.putExtra("dateStr", dateStr)
+            intent.putExtra("ageStr", ageStr)
+
+            startActivity(intent);
         }
 
-        val name = findViewById<EditText>(R.id.movie_name)
-        val nameStr = name.text.toString()
-        val overview = findViewById<EditText>(R.id.movie_desc)
-        val overviewStr = overview.text.toString()
-        val langStr = language
-        val date = findViewById<EditText>(R.id.movie_date)
-        val dateStr = date.text.toString()
-        val ageStr = ageRating
 
-
-        val intent = Intent(this@MainActivity, movie_details::class.java)
-
-        intent.putExtra("nameStr", nameStr)
-        intent.putExtra("overviewStr", overviewStr)
-        intent.putExtra("langStr", langStr)
-        intent.putExtra("dateStr", dateStr)
-        intent.putExtra("ageStr", ageStr)
-
-        startActivity(intent);
 
     }
 }
